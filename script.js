@@ -1,4 +1,6 @@
 // Function to get the computer's choice (rock, paper, or scissors)
+let playerScore = 0;
+let computerScore = 0;
 function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
 
@@ -48,37 +50,68 @@ function playRound (playerSelection, computerSelection) {
     }
 }   
 
-// Function to play a 5-round game and keep track of scores
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+function updateScoreAndDisplayResult(result) {
+    console.log(result);
 
-    // Loop for 5 rounds
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Enter your choice (Rock/Paper/Scissors):');
-        let computerSelection = getComputerChoice();
-    
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result);
-    
-        // Update scores based on the result of the round
-        if (result.startsWith('You win')) {
-            playerScore++;
-        } else if (result.startsWith('You lose')) {
-            computerScore++;
-        }
+    // Update scores based on the result of the round
+    if (result.startsWith('You win')) {
+        playerScore++;
+    } else if (result.startsWith('You lose')) {
+        computerScore++;
     }
 
-    // Display final scores and determine the winner of the game
-    console.log(`Final Score: You ${playerScore}, Computer ${computerScore}`);
-    if (playerScore > computerScore) {
-        console.log('You win!!!');
-    } else if (playerScore < computerScore) {
-        console.log('You lose!!!');
-    } else {
-        console.log ("It's a tie!!!"); 
+    // Display current scores
+    const currentScoreDisplay = document.getElementById('currentScore');
+    currentScoreDisplay.textContent = `Current Score: You ${playerScore}, Computer ${computerScore}`;
+
+    // Display the result of each round
+    const resultDisplay = document.getElementById('result');
+    resultDisplay.textContent = result;
+
+    // Check if 5 rounds have been played and display the final score
+    roundsPlayed++;
+    if (roundsPlayed === totalRounds) {
+        const finalScoreDisplay = document.getElementById('finalScore');
+        finalScoreDisplay.textContent = `Final Score: You ${playerScore}, Computer ${computerScore}`;
+
+        // Determine the winner of the game and display the result
+        if (playerScore > computerScore) {
+            resultDisplay.textContent = 'You win!!!';
+        } else if (playerScore < computerScore) {
+            resultDisplay.textContent = 'You lose!!!';
+        } else {
+            resultDisplay.textContent = "It's a tie!!!";
+        }
+
+        // Disable buttons to prevent further plays
+        document.getElementById('rock').disabled = true;
+        document.getElementById('paper').disabled = true;
+        document.getElementById('scissors').disabled = true;
     }
 }
 
-// Start the game and log the result
-console.log(game());
+// Event listeners for the buttons
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
+
+rockButton.addEventListener('click', function () {
+    const playerSelection = 'rock';
+    const computerSelection = getComputerChoice();
+    const result = playRound(playerSelection, computerSelection);
+    updateScoreAndDisplayResult(result);
+});
+
+paperButton.addEventListener('click', function () {
+    const playerSelection = 'paper';
+    const computerSelection = getComputerChoice();
+    const result = playRound(playerSelection, computerSelection);
+    updateScoreAndDisplayResult(result);
+});
+
+scissorsButton.addEventListener('click', function () {
+    const playerSelection = 'scissors';
+    const computerSelection = getComputerChoice();
+    const result = playRound(playerSelection, computerSelection);
+    updateScoreAndDisplayResult(result);
+});
