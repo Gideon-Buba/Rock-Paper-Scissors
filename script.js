@@ -1,6 +1,8 @@
-// Function to get the computer's choice (rock, paper, or scissors)
+
 let playerScore = 0;
 let computerScore = 0;
+const totalRounds = 5;
+
 function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
 
@@ -14,37 +16,39 @@ function getComputerChoice() {
     }
 }
 
-// Function to play a single round of the game
-function playRound (playerSelection, computerSelection) {
-    // Convert playerSelection to lowercase to handle case-insensitive input
+function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase(); 
 
-    // Check for ties
     if (playerSelection === computerSelection) {
         return "It's a tie!!!";
     }
 
-    // Check different scenarios for playerSelection and computerSelection
     if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
+            computerScore++;
             return 'You lose! Paper beats rock.';
         } else {
+            playerScore++;
             return 'You win! Rock beats scissors.';
         }
     }   
 
     if (playerSelection === 'paper') {
         if (computerSelection === 'scissors') {
+            computerScore++;
             return 'You lose! Scissors beats paper.';
         } else {
+            playerScore++;
             return 'You win! Paper beats rock.';
         }
     }
 
     if (playerSelection === 'scissors'){
         if (computerSelection === 'rock') {
+            computerScore++;
             return 'You lose! Rock beats scissors.';
         } else {
+            playerScore++;
             return 'You win! Scissors beats paper.';
         }
     }
@@ -53,44 +57,30 @@ function playRound (playerSelection, computerSelection) {
 function updateScoreAndDisplayResult(result) {
     console.log(result);
 
-    // Update scores based on the result of the round
-    if (result.startsWith('You win')) {
-        playerScore++;
-    } else if (result.startsWith('You lose')) {
-        computerScore++;
-    }
-
-    // Display current scores
     const currentScoreDisplay = document.getElementById('currentScore');
     currentScoreDisplay.textContent = `Current Score: You ${playerScore}, Computer ${computerScore}`;
 
-    // Display the result of each round
     const resultDisplay = document.getElementById('result');
     resultDisplay.textContent = result;
 
-    // Check if 5 rounds have been played and display the final score
-    roundsPlayed++;
-    if (roundsPlayed === totalRounds) {
+    if (playerScore >= totalRounds || computerScore >= totalRounds) {
         const finalScoreDisplay = document.getElementById('finalScore');
         finalScoreDisplay.textContent = `Final Score: You ${playerScore}, Computer ${computerScore}`;
 
-        // Determine the winner of the game and display the result
         if (playerScore > computerScore) {
-            resultDisplay.textContent = 'You win!!!';
+            resultDisplay.textContent = 'You win the game!!!';
         } else if (playerScore < computerScore) {
-            resultDisplay.textContent = 'You lose!!!';
+            resultDisplay.textContent = 'You lose the game!!!';
         } else {
             resultDisplay.textContent = "It's a tie!!!";
         }
 
-        // Disable buttons to prevent further plays
         document.getElementById('rock').disabled = true;
         document.getElementById('paper').disabled = true;
         document.getElementById('scissors').disabled = true;
     }
 }
 
-// Event listeners for the buttons
 const rockButton = document.getElementById('rock');
 const paperButton = document.getElementById('paper');
 const scissorsButton = document.getElementById('scissors');
