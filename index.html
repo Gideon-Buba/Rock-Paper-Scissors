@@ -2,23 +2,35 @@
 <html>
 <head>
   <title>Rock Paper Scissors</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="script.js" defer></script>
+  <link href="link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">  
 </head>
 <body>
-  <h1>
+  <h1 class="title">
     ROCK PAPER SCISSORS
   </h1>
-
-  <h2>Select your weapon!!!</h2>
-  <h3>First to Score 5 wins</h3>
+  <div class="instruction">
+    <h2>Select your weapon!!!</h2>
+    <h3>First to Score 5 wins</h3>
+  </div>
   
-  <div id="container"></div>
-  <button id="rock">Rock</button>
-  <button id="paper">Paper</button>
-  <button id="scissors">Scissors</button>
+  
+  <div id="container">
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+  </div>
 
-  <p id="result"></p>
-  <p id="currentScore"></p>
-  <p id="finalScore"></p>
+  <div class="scoreboard">
+    <p id="result"></p>
+    <p id="currentScore"></p>
+    <p id="finalScore"></p>
+  </div>
+  
+  
 </body>
 </html>
