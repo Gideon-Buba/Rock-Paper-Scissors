@@ -9,32 +9,38 @@ body {
 }
 
 /*Media Queries*/
-@media (max-width: 550px) {
-    .title {
-      font-size: 18px;
-    }
-  
-    .score-info {
-      font-size: 26px;
-    }
-  
-    .buttons {
-      gap: 10px;
-    }
-  
-    .btn-square {
-      width: 100px;
-      height: 100px;
-    }
-  
-    .sign {
-      font-size: 50px;
-    }
-  
-    .modal {
-      width: 95%;
-    }
+@media (max-width: 414px) { /* iPhone XR portrait width */
+  .title {
+      font-size: 16px; /* Slightly reduced font size */
+      text-align: center; /* Center align the text */
   }
+
+  .score-info {
+      font-size: 22px; /* Slightly reduced font size */
+      text-align: center; /* Center align the text */
+  }
+
+  .buttons {
+      display: flex;
+      justify-content: center; /* Center align the buttons */
+      gap: 8px; /* Slightly reduced gap */
+      flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+  }
+
+  .btn-square {
+      width: 80px; /* Smaller button size */
+      height: 80px;
+  }
+
+  .sign {
+      font-size: 40px; /* Slightly reduced font size */
+  }
+
+  .modal {
+      width: 90%; /* Slightly smaller modal width */
+  }
+}
+
 .title {
     font-family:'Gaegu', cursive;
     font-size: 40px;
@@ -93,6 +99,6 @@ footer {
     align-items: center;
     justify-content: center;
     background-color: #84714F;
-    padding: 5px 0; /* Adjust the padding as needed */
-    margin-top: auto; /* Push the footer to the bottom */
+    padding: 5px 0; 
+    margin-top: auto; 
 }
